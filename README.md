@@ -1,40 +1,10 @@
 # 1 **rslidar_sdk**
 
- [中文介绍](README_CN.md)
-
-## 1 Introduction
-
 **rslidar_sdk** is the Software Development Kit of the RoboSense Lidar based on Ubuntu. It contains:
 
 + The lidar driver core [rs_driver](https://github.com/RoboSense-LiDAR/rs_driver),
 + The ROS support,
 + The ROS2 support,
-
-To get point cloud through ROS/ROS2,  please just use this SDK.
-
-To integrate the Lidar driver into your own projects, please use the rs_driver.
-
-### 1.1 LiDAR Supported
-
-- RS-LiDAR-16
-- RS-LiDAR-32
-- RS-Bpearl
-- RS-Helios
-- RS-Helios-16P
-- RS-Ruby-128
-- RS-Ruby-80
-- RS-Ruby-48
-- RS-Ruby-Plus-128
-- RS-Ruby-Plus-80
-- RS-Ruby-Plus-48
-- RS-LiDAR-M1
-- RS-LiDAR-M2
-- RS-LiDAR-M3
-- RS-LiDAR-E1
-- RS-LiDAR-MX
-- RS-LiDAR-AIRY
-- RS-LiDAR-EMX
-- RS-LiDAR-FAIRY
 
 ### 1.2 Point Type Supported
 
@@ -42,8 +12,6 @@ To integrate the Lidar driver into your own projects, please use the rs_driver.
 - XYZIRT - x, y, z, intensity, ring, timestamp
 
 ## 2 Download
-
-### 2.1 Download via Git
 
 Download the rslidar_sdk as below. Since it contains the submodule rs_driver, please also use `git submodule` to download the submodule properly.
 
@@ -53,13 +21,6 @@ cd rslidar_sdk
 git submodule init
 git submodule update
 ```
-
-### 2.2 Download directly
-
-Instead of using Git, user can also access [rslidar_sdk_release](https://github.com/RoboSense-LiDAR/rslidar_sdk/releases) to download the latest version of rslidar_sdk.
-
-Please download the **rslidar_sdk.tar.gz** archive instead of Source code. The Source code zip file does not contain the submodule rs_driver, so it has to be downloaded manaully.
-![](./img/01_01_download_page.png)
 
 ## 3 Dependencies
 
@@ -85,6 +46,7 @@ To use rslidar_sdk in the ROS2 environment, please install below libraries.
 + Ubuntu 18.04 - ROS2 Eloquent desktop
 + Ubuntu 20.04 - ROS2 Galactic desktop
 + Ubuntu 22.04 - ROS2 Humble desktop
++ Ubuntu 24.04 - ROS Jazzy desktop
 
 For installation, please refer to https://index.ros.org/doc/ros2/Installation/Eloquent/Linux-Install-Debians/
 
