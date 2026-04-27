@@ -1,4 +1,4 @@
-# 1 **rslidar_sdk**
+## 1 rslidar_sdk
 
 **rslidar_sdk** is the Software Development Kit of the RoboSense Lidar based on Ubuntu. It contains:
 
@@ -16,7 +16,7 @@
 Download the rslidar_sdk as below. Since it contains the submodule rs_driver, please also use `git submodule` to download the submodule properly.
 
 ```sh
-git clone https://github.com/RoboSense-LiDAR/rslidar_sdk.git
+git clone https://github.com/robotics-upo/rslidar_sdk_upo.git
 cd rslidar_sdk
 git submodule init
 git submodule update
@@ -97,6 +97,8 @@ roslaunch rslidar_sdk start.launch
 
 (3) Go back to the root of workspace, run the following commands to compile and run. (if using zsh, replace the 2nd command with *source install/setup.zsh*).
 
+(4) The LiDAR's default IP address is 192.168.1.200. It is important to configure the Ethernet connection on the same subnet (for example: 192.168.1.102).
+
 ```sh
 colcon build
 source install/setup.bash
@@ -104,33 +106,3 @@ ros2 launch rslidar_sdk start.py
 ```
 
 Another version of start.py may be used, since it is different on different versios of ROS2. For example, elequent_start.py is used instead for ROS2 elequent.
-
-## 5 Introduction to parameters
-
-To change behaviors of rslidar_sdk, change its parameters. please read the following links for detail information.
-
-[Intro to parameters](doc/intro/02_parameter_intro.md)
-
-[Intro to hidden parameters](doc/intro/03_hiding_parameters_intro.md)
-
-## 6 Quick start
-
-Below are some quick guides to use rslidar_sdk.
-
-[Connect to online LiDAR and send point cloud through ROS](doc/howto/06_how_to_decode_online_lidar.md)
-
-[Decode PCAP file and send point cloud through ROS](doc/howto/08_how_to_decode_pcap_file.md)
-
-[Change Point Type](doc/howto/05_how_to_change_point_type.md)
-
-## 7 Advanced Topics
-
-[Online Lidar - Advanced topics](doc/howto/07_online_lidar_advanced_topics.md)
-
-[PCAP file - Advanced topics](doc/howto/09_pcap_file_advanced_topics.md)
-
-[Coordinate Transformation](doc/howto/10_how_to_use_coordinate_transformation.md)
-
-[Record rosbag &amp; Replay it](doc/howto/11_how_to_record_replay_packet_rosbag.md)
-
-[Solution for ROS2_humble frame rate reduction](doc/howto/13_how_to_solve_ROS2_humble_frame_rate_drop.md)
