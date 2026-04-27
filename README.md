@@ -6,7 +6,7 @@
 + The ROS support,
 + The ROS2 support,
 
-### 1.2 Point Type Supported
+### Point Type Supported
 
 - XYZI - x, y, z, intensity
 - XYZIRT - x, y, z, intensity, ring, timestamp
