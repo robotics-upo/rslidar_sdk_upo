@@ -11,20 +11,9 @@
 - XYZI - x, y, z, intensity
 - XYZIRT - x, y, z, intensity, ring, timestamp
 
-## 2 Download
+## 2 Dependencies
 
-Download the rslidar_sdk as below. Since it contains the submodule rs_driver, please also use `git submodule` to download the submodule properly.
-
-```sh
-git clone https://github.com/robotics-upo/rslidar_sdk_upo.git
-cd rslidar_sdk
-git submodule init
-git submodule update
-```
-
-## 3 Dependencies
-
-### 3.1 ROS
+### 2.1 ROS
 
 To run rslidar_sdk in the ROS environment, please install below libraries.
 
@@ -38,7 +27,7 @@ For installation, please refer to http://wiki.ros.org.
 
 This brings a lot of convenience, since you don't have to handle version conflict.
 
-### 3.2 ROS2
+### 2.2 ROS2
 
 To use rslidar_sdk in the ROS2 environment, please install below libraries.
 
@@ -52,7 +41,7 @@ For installation, please refer to https://index.ros.org/doc/ros2/Installation/El
 
 **Please do not install ROS and ROS2 on the same computer, to avoid possible conflict and manually install some libraries, such as Yaml.**
 
-### 3.3 Yaml (Essential)
+### 2.3 Yaml (Essential)
 
 version: >= v0.5.2
 
@@ -65,7 +54,7 @@ sudo apt-get update
 sudo apt-get install -y libyaml-cpp-dev
 ```
 
-### 3.4 libpcap (Essential)
+### 2.4 libpcap (Essential)
 
 version: >= v1.7.4
 
@@ -75,9 +64,9 @@ Installation:
 sudo apt-get install -y  libpcap-dev
 ```
 
-## 4 Compile & Run
+## 3 Compile & Run
 
-### 4.1 Compile with ROS catkin tools
+### 3.1 Compile with ROS catkin tools
 
 (1) Create a new workspace folder, and create a *src* folder in it. Then put the rslidar_sdk project into the *src* folder.
 
@@ -89,20 +78,20 @@ source devel/setup.bash
 roslaunch rslidar_sdk start.launch
 ```
 
-### 4.2 Compile with ROS2 colcon
+### 3.2 Compile with ROS2 colcon
 
 (1) Create a new workspace folder, and create a *src* folder in it. Then put the rslidar_sdk project in the *src* folder.
 
-(2) Download the packet definition project in ROS2 through [link](https://github.com/RoboSense-LiDAR/rslidar_msg), then put the project rslidar_msg in the *src* folder you just created.
+(2) Download the driver kernel as zip from [link](https://github.com/RoboSense-LiDAR/rs_driver). Paste the content in *rslidar_sdk/src/rs_driver* folder.
 
-(3) Go back to the root of workspace, run the following commands to compile and run. (if using zsh, replace the 2nd command with *source install/setup.zsh*).
+(3) Download the packet definition project in ROS2 through [link](https://github.com/RoboSense-LiDAR/rslidar_msg), then put the project rslidar_msg in the *src* folder you just created.
 
-(4) The LiDAR's default IP address is 192.168.1.200. It is important to configure the Ethernet connection on the same subnet (for example: 192.168.1.102).
+(4) Go back to the root of workspace, run the following commands to compile and run. (if using zsh, replace the 2nd command with *source install/setup.zsh*).
+
+(5) The LiDAR's default IP address is 192.168.1.200. It is important to configure the Ethernet connection on the same subnet (for example: 192.168.1.102).
 
 ```sh
 colcon build
 source install/setup.bash
 ros2 launch rslidar_sdk start.py
 ```
-
-Another version of start.py may be used, since it is different on different versios of ROS2. For example, elequent_start.py is used instead for ROS2 elequent.
