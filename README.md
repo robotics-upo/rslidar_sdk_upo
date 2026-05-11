@@ -82,7 +82,7 @@ roslaunch rslidar_sdk start.launch
 
 (1) Create a new workspace folder, and create a *src* folder in it. Then put the rslidar_sdk project in the *src* folder.
 
-(2) Download the driver kernel as zip from [link](https://github.com/RoboSense-LiDAR/rs_driver). Paste the content in *rslidar_sdk/src/rs_driver* folder.
+(2) Download the driver kernel as zip from this [link](https://github.com/RoboSense-LiDAR/rs_driver). Unzip and paste the content in *rslidar_sdk/src/rs_driver* folder.
 
 (3) Download the packet definition project in ROS2 through [link](https://github.com/RoboSense-LiDAR/rslidar_msg), then put the project rslidar_msg in the *src* folder you just created.
 
