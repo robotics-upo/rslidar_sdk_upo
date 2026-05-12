@@ -216,6 +216,7 @@ inline void DestinationPacketRos::sendPacket(const Packet& msg)
 
 #ifdef ROS2_FOUND
 #include "rslidar_msg/msg/rslidar_packet.hpp"
+#include <sensor_msgs/msg/temperature.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sstream>
 
@@ -314,6 +315,7 @@ private:
 
   std::shared_ptr<rclcpp::Node> node_ptr_;
   rclcpp::Publisher<rslidar_msg::msg::RslidarPacket>::SharedPtr pkt_pub_;
+  rclcpp::Publisher<sensor_msgs::msg::Temperature>::SharedPtr temp_pub_;
   std::string frame_id_;
 };
 
@@ -335,11 +337,29 @@ inline void DestinationPacketRos::init(const YAML::Node& config)
 
   node_ptr_.reset(new rclcpp::Node(node_name.str()));
   pkt_pub_ = node_ptr_->create_publisher<rslidar_msg::msg::RslidarPacket>(ros_send_topic, ros_queue_length);
+  temp_pub_ = node_ptr_->create_publisher<sensor_msgs::msg::Temperature>("/rslidar_temperature", 10);
 }
 
 inline void DestinationPacketRos::sendPacket(const Packet& msg)
 {
   pkt_pub_->publish(toRosMsg(msg, frame_id_));
+
+  if (msg.is_difop && msg.buf_.size() >= 1084)
+  {
+      if (msg.buf_[0] == 0xA5 && msg.buf_[1] == 0xFF)
+      {
+          uint16_t raw_temp = (msg.buf_[1082] << 8) | msg.buf_[1083];
+          double real_temp = std::round(static_cast<double>(raw_temp)) / 100.0;
+          
+          sensor_msgs::msg::Temperature temp_msg;
+          temp_msg.header.stamp.sec = (uint32_t)floor(msg.timestamp);
+          temp_msg.header.stamp.nanosec = (uint32_t)round((msg.timestamp - temp_msg.header.stamp.sec) * 1e9);
+          temp_msg.header.frame_id = frame_id_;
+          temp_msg.temperature = real_temp;
+          
+          temp_pub_->publish(temp_msg);
+      }
+  }
 }
 
 }  // namespace lidar
